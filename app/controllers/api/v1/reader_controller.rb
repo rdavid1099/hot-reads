@@ -1,7 +1,14 @@
 class Api::V1::ReaderController < ApplicationController
   def create
-    read = Read.new(read_params)
-    if read.save
+    read = Read.find_by(url: params[:url]) || Read.new(read_params)
+    if read.id
+      read.counter += 1
+      read.save!
+      render json: {
+         status: 202,
+         message: "Successfully updated read",
+       }.to_json
+    elsif read.save
       render json: {
          status: 201,
          message: "Successfully created read",

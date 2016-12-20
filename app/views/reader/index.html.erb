@@ -1,0 +1,15 @@
+<h1>Hot Reads</h1>
+<table>
+  <tr>
+    <th>Reads</th>
+    <th>Link</th>
+    <th>Submitter Email</th>
+  </tr>
+  <% @reads.each do |read| %>
+    <tr>
+      <td><%= read.counter %></td>
+      <td><%= link_to read.title, read.url %></td>
+      <td><%= read.submitter_name %></td>
+    </tr>
+  <% end %>
+</table>
